@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "inquirer": "^8.0.0"
+  },
+  "name": "teambuilder",
+  "version": "1.0.0",
+  "description": "Generic Team Builder with Node and Javascript",
+  "main": "logic.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Christian Fellwock",
+  "license": "ISC"
+}
