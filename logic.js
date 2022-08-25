@@ -1,23 +1,20 @@
 // Javascript needs to generate an HTML page 
 const inquirer = require('inquirer')
 const fs = require('fs')
+
 const Manager = require('./Constructors/Manager')
 const Engineer = require('./Constructors/Engineer')
 const Intern = require('./Constructors/Intern')
-
-// const generateFile = require('./Generated File')
+const Templates = require('./Generated File/Templates')
 
 // Arrays
-const managerInfo = []
-const engineerInfo = []
-const internInfo = []
+const teamArray = []
 
 // Build team main function
 function buildTeam() {
 
-
     // manager function
-createManager()
+    createManager()
     function createManager() {
         inquirer.prompt([
             {
@@ -79,11 +76,11 @@ createManager()
 
             .then((answers) => {
                 const newManager = new Manager(answers.managername, answers.managerid, answers.manageremail, answers.managerphone)
-                managerInfo.push(newManager)
-                console.log(managerInfo);
+                teamArray.push(newManager)
+                console.log(teamArray);
                 addMembers();
             });
-        }
+    }
 
     // employee functions
     function addMembers() {
@@ -101,7 +98,7 @@ createManager()
             }]).then((userChoice) => {
                 switch (userChoice.addEmployee) {
                     case "Engineer":
-                        createEngineer();
+                        addEngineer();
                         break;
                     case "Intern":
                         addIntern();
@@ -112,7 +109,7 @@ createManager()
             });
 
         // Engineer Function
-        function createEngineer() {
+        function addEngineer() {
             inquirer.prompt([
                 {
                     type: 'input',
@@ -170,17 +167,18 @@ createManager()
                     }
                 },
             ])
-    
-            .then((answers) => {
-                engineerInfo.push(answers.engineername, answers.engineerid, answers.engineeremail, answers.engineeruser)
-                console.log(engineerInfo);
-                addMembers();
-            });
+
+                .then((answers) => {
+                    const newEngineer = new Engineer(answers.engineername, answers.engineerid, answers.engineeremail, answers.engineeruser)
+                    teamArray.push(newEngineer)
+                    console.log(teamArray);
+                    addMembers();
+                });
         };
     };
 
     // Intern function
-    function createIntern() {
+    function addIntern() {
         inquirer.prompt([
             {
                 type: 'input',
@@ -201,7 +199,7 @@ createManager()
                 name: 'internid',
                 message: "Enter an intern's employee ID#.",
                 validate: internidInput => {
-                    if (internidInput === 'num') {
+                    if (internidInput) {
                         return true;
                     } else {
                         console.log("Please enter an intern's employee ID#.")
@@ -229,7 +227,7 @@ createManager()
                 name: 'internschool',
                 message: "Enter an intern's school.",
                 validate: internschoolInput => {
-                    if (internschoolInput = 'num') {
+                    if (internschoolInput) {
                         return true;
                     } else {
                         console.log("Please enter an intern's GitHub user ID.")
@@ -239,18 +237,33 @@ createManager()
             },
         ])
 
-        .then((answers) => {
-            internInfo.push(answers.internname, answers.internid, answers.internemail, answers.internschool)
-            console.log(internInfo);
-            addMembers();
-        });
+            .then((answers) => {
+                const newIntern = new Intern(answers.internname, answers.internid, answers.internemail, answers.internschool)
+                teamArray.push(newIntern)
+                console.log(teamArray);
+                addMembers();
+            });
+    };
+
+    // Finish team function to write to HTML
+    function finishTeam() {
+        const writeFile = (fileContent) => {
+            fs.writeFile('')
+
+            // NEED TO ADD FILEPATH INSTEAD OF './dist/index.html',
+            fs.writeFile('./dist/index.html', fileContent, (err) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log('Your team profile file has been generated!');
+                }
+                let html = Templates(teamArray)
+            });
+        };
+        writeFile(html);
     };
 
 };
-
-// Finish team function to write to HTML
-
-
 
 // End of buildTeam function
 
