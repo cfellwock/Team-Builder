@@ -1,14 +1,16 @@
 // Javascript needs to generate an HTML page 
 const inquirer = require('inquirer')
-const fs = require('fs')
 
 const Manager = require('./Constructors/Manager')
 const Engineer = require('./Constructors/Engineer')
 const Intern = require('./Constructors/Intern')
 const Templates = require('./Generated File/Templates')
+const writeFile = require('./fileWriter')
 
 // Arrays
 const teamArray = []
+
+let html = Templates(teamArray)
 
 // Build team main function
 function buildTeam() {
@@ -247,20 +249,10 @@ function buildTeam() {
 
     // Finish team function to write to HTML
     function finishTeam() {
-        const writeFile = (fileContent) => {
-            fs.writeFile('')
 
-            // NEED TO ADD FILEPATH INSTEAD OF './dist/index.html',
-            fs.writeFile('./dist/index.html', fileContent, (err) => {
-                if (err) {
-                    console.log(err);
-                } else {
-                    console.log('Your team profile file has been generated!');
-                }
-                let html = Templates(teamArray)
-            });
-        };
-        writeFile(html);
+        let html = Templates(teamArray)
+        writeFile(html)
+
     };
 
 };
@@ -268,6 +260,5 @@ function buildTeam() {
 // End of buildTeam function
 
 
-
-// Callback function to initializ app
+// Callback function to initialize app
 buildTeam();

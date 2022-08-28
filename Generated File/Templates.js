@@ -103,4 +103,4 @@ const templateHTML = data => {
     `
 }
 
-module.exports = Templates
+module.exports = templateHTML;
