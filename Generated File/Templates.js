@@ -2,13 +2,12 @@
 const managerCard = managerData => {
     return `
         <div class="card" style="width: 18rem;">
-            <img src="" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">${managerData.getRole()}</h5>
                 <h5 class="card-title">${managerData.getName()}</h5>
-                <ul class="list-group list-group-flush">
+                <ul class="list-group">
                 <li class="list-group-item">Employee ID: ${managerData.getID()}</li>
-                <li class="list-group-item">Email: ${managerData.getEmail()}</li>
+                <li class="list-group-item">Email: <a href="mailto:${managerData.getEmail()}">${managerData.getEmail()}</a></li>
                 <li class="list-group-item">Office #: ${managerData.getOfficeNumber()}</li>
                 </ul>
             </div>
@@ -20,14 +19,13 @@ const managerCard = managerData => {
 const engineerCard = engineerData => {
     return `
         <div class="card" style="width: 18rem;">
-            <img src="" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">${engineerData.getRole()}</h5>
                 <h5 class="card-title">${engineerData.getName()}</h5>
-                <ul class="list-group list-group-flush">
+                <ul class="list-group">
                 <li class="list-group-item">Employee ID: ${engineerData.getID()}</li>
-                <li class="list-group-item">Email: ${engineerData.getEmail()}</li>
-                <li class="list-group-item">GitHub: ${engineerData.getGitHub()}</li>
+                <li class="list-group-item">Email: <a href="mailto:${engineerData.getEmail()}">${engineerData.getEmail()}</a></li>
+                <li class="list-group-item">GitHub: <a href="https://github.com/${engineerData.getGitHub()}" target="_blank"> ${engineerData.getGitHub()}</a></li>
                 </ul>
             </div>
         </div>
@@ -38,13 +36,12 @@ const engineerCard = engineerData => {
 const internCard = internData => {
     return `
         <div class="card" style="width: 18rem;">
-            <img src="" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">${internData.getRole()}</h5>
                 <h5 class="card-title">${internData.getName()}</h5>
-                <ul class="list-group list-group-flush">
+                <ul class="list-group">
                 <li class="list-group-item">Employee ID: ${internData.getID()}</li>
-                <li class="list-group-item">Email: ${internData.getEmail()}</li>
+                <li class="list-group-item">Email: <a href="mailto:${internData.getEmail()}">${internData.getEmail()}</a></li>
                 <li class="list-group-item">School: ${internData.getSchool()}</li>
                 </ul>
             </div>
@@ -88,7 +85,7 @@ const templateHTML = data => {
         </head>
 
         <header>
-        <div class="jumbotron jumbotron-fluid">
+        <div class="jumbotron">
             <div class="container">
                 <h1 class="display-4">My Team</h1>
                 <p class="lead"></p>
@@ -97,7 +94,9 @@ const templateHTML = data => {
         </header>
 
         <body>  
-        ${employeeCards(data)}
+            <div class="card-area">
+                ${employeeCards(data)}
+            </div>
         </body>
         </html>
     `

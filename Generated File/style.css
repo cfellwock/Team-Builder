@@ -2,12 +2,6 @@ h1 {
     text-align: center;
 }
 
-body{
-    font-family: 'Alumni Sans Pinstripe', sans-serif;
-    font-weight: bold;
-}
-
-
 .container {
     display: flex;
     flex-direction: row;
@@ -18,12 +12,15 @@ body{
     background-color: red;
     color: white;
     font-size: 60px;
-  
     font-weight: bold;
     border-radius: 1;
-    display: flex;
     justify-content: center;
     
+}
+
+body {
+  font-family: 'Alumni Sans Pinstripe', sans-serif;
+  font-weight: bold;
 }
 
 .card {
@@ -35,16 +32,20 @@ body{
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     
   }
-  .card img {
-    width: 65%;
-    border-radius: 50%;
-    margin: 0 auto;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  }
-  .card .card-title {
-    font-weight: 700;
-    font-size: 1.5em;
-  }
+
+.card-area {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+
+.card .card-title {
+  font-weight: 700;
+  font-size: 1.5em;
+}
+
 .list-group{
     text-align: left;
 }
